@@ -1,0 +1,153 @@
+/* ============================================================
+   EducaJuega · comida.css  (Nivel 3 · Elige mejor)
+   ============================================================ */
+
+.food-game-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, .85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(24px, 5vw, 64px);
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.food-game-layout {
+    position: relative;
+    isolation: isolate;
+}
+
+.food-game-layout::before {
+    position: absolute;
+    z-index: -1;
+    inset: -20px;
+    border-radius: 28px;
+    background: url("img/cocina.jpg") center / cover no-repeat;
+    content: "";
+}
+
+.plate-drop {
+    display: flex;
+    width: min(100%, 340px);
+    aspect-ratio: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 5px dashed #78bfe9;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 43%, #e4f5ff 44% 57%, var(--sky) 58% 66%, #e4f5ff 67%);
+    color: #28618e;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.plate-drop.drag-over { transform: scale(1.04); background-color: #d4f3e0; }
+.plate-label { font-size: 14px; font-weight: 700; letter-spacing: .05em; }
+
+.plate-fruits {
+    display: flex;
+    min-height: 60px;
+    max-width: 180px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 40px;
+}
+
+.plate-fruits span { animation: pop .4s; }
+
+.counter-wrap { text-align: center; }
+
+.fruit-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 8px 18px;
+    border: 2px solid #b9e6c6;
+    border-radius: 999px;
+    background: var(--green-bg);
+    color: #1f7340;
+    font-weight: 700;
+}
+
+.fruit-counter b {
+    display: grid;
+    min-width: 32px;
+    height: 32px;
+    place-items: center;
+    border-radius: 50%;
+    background: #41ad62;
+    color: #fff;
+}
+
+.food-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+
+.food-option {
+    display: grid;
+    min-height: 128px;
+    align-content: center;
+    justify-items: center;
+    gap: 6px;
+    border: 3px solid #dcecf7;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 5px 0 #e5f0f7;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.food-option > span { font-size: 46px; line-height: 1; }
+.food-option strong { font-size: 15px; font-weight: 700; }
+.food-option:hover { transform: translateY(-2px); border-color: #a9d9f4; background: #f1faff; }
+.food-option:active { cursor: grabbing; }
+.food-option.wrong { animation: shake .35s; border-color: #f29ba3; background: #fff2f3; }
+.food-option.added { border-color: #58c77b; background: var(--green-bg); opacity: .5; cursor: default; }
+
+@media (max-width: 900px) {
+    .food-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+    .food-game-layout { grid-template-columns: 1fr; gap: 8px; }
+    .plate-drop { width: clamp(190px, 25vh, 225px); padding: 10px; }
+    .food-options { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+    .food-option { min-height: clamp(56px, 7vh, 64px); border-radius: 15px; }
+    .food-option > span { font-size: clamp(26px, 3.5vh, 34px); }
+    .food-option strong { font-size: 10px; }
+    .plate-fruits { min-height: 42px; font-size: 30px; }
+    .fruit-counter { gap: 6px; margin-top: 6px; padding: 5px 10px; font-size: 14px; }
+    .fruit-counter b { min-width: 26px; height: 26px; }
+    .game-feedback { margin-top: 6px; }
+}
+
+@media (max-height: 700px) {
+    .food-game-layout { gap: 10px; }
+    .plate-drop { width: min(100%, 220px); padding: 12px; }
+    .plate-fruits { min-height: 42px; font-size: 30px; }
+    .food-options { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+    .food-option { min-height: 58px; border-radius: 14px; }
+    .food-option > span { font-size: 24px; }
+    .food-option strong { font-size: 10px; }
+    .fruit-counter { margin-top: 6px; padding: 4px 10px; }
+    .fruit-counter b { min-width: 26px; height: 26px; }
+}
+
+@media (max-width: 560px) and (max-height: 700px) {
+    .food-game-layout { grid-template-columns: minmax(0, 1fr); }
+    .plate-drop { width: min(55vw, 180px); }
+    .food-option { min-height: 54px; }
+    .play-instructions { gap: 6px; margin: 2px 0 4px; font-size: 14px; }
+    .speak { width: 32px; height: 32px; }
+    .game-feedback { margin-top: 4px; }
+}
+
+@media (min-width: 561px) and (max-height: 850px) {
+    .plate-drop { width: min(100%, 300px); }
+    .food-option { min-height: 110px; }
+}

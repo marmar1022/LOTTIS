@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>Elige mejor · EducaJuega</title>
+    <link rel="icon" type="image/png" href="img/ISOLOGO HORIZONTAL LOTTIS.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="comida.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="educa.html#inicio" aria-label="EducaJuega, inicio">
+                <img class="brand-logo" src="img/ISOTIPO LOTTIS.png" alt="Logo de EducaJuega">
+            </a>
+            <nav class="quick-nav" aria-label="Navegación principal">
+                <a class="games-nav-link" href="educa.html#inicio" aria-label="Ir al inicio">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="m3.5 10.5 8.5-7 8.5 7v9a1.5 1.5 0 0 1-1.5 1.5h-14A1.5 1.5 0 0 1 3.5 19.5v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 21v-6.5a3 3 0 0 1 6 0V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a class="games-nav-link active" href="educa.html#juegos" aria-label="Ir a los juegos" aria-current="page">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7.3 8h9.4c1.5 0 2.6.9 3 2.4l1.1 5.1c.4 1.8-1.6 3-3 1.9l-2.3-1.8h-7l-2.3 1.8c-1.4 1.1-3.4-.1-3-1.9l1.1-5.1C4.7 8.9 5.8 8 7.3 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        <path d="M8 10.5v4M6 12.5h4m5-1h.01m2 2h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a class="games-nav-link" href="educa.html#recompensas" aria-label="Abrir el vestidor">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M8.8 14.1c.8 1 1.9 1.5 3.2 1.5s2.4-.5 3.2-1.5M9 9.7h.01M15 9.7h.01M12 4V2m6.5 3.5 1.2-1.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="game-screen" aria-labelledby="food-game-title">
+                <a class="back-to-games" href="educa.html#juegos">← Volver a los juegos</a>
+                <div class="play-panel">
+                    <span class="game-label">ARRASTRA LAS FRUTAS AQUÍ</span>
+                    <h1 id="food-game-title">Llena el plato con frutas saludables</h1>
+                    <p class="play-instructions"><span>Arrastra solo las frutas al plato o tócalas.</span>
+                        <button class="speak" type="button" data-speak="food" aria-label="Escuchar la instrucción">🔊</button></p>
+
+                    <div class="food-game-layout">
+                        <div>
+                            <div class="plate-drop" id="fruit-plate" aria-label="Plato: arrastra frutas aquí">
+                                <span class="plate-label">🍽️ TU PLATO</span>
+                                <div class="plate-fruits" id="plate-fruits" aria-live="polite"></div>
+                            </div>
+                            <div class="counter-wrap"><span class="fruit-counter">🍎 Frutas: <b id="fruit-count">0</b></span></div>
+                        </div>
+                        <div class="food-options" id="food-options" role="group" aria-label="Alimentos disponibles"></div>
+                    </div>
+
+                    <p class="game-feedback" id="food-feedback" aria-live="polite">Busca 4 frutas saludables.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="win" id="win" role="dialog" aria-modal="true" aria-labelledby="win-title" hidden>
+        <div class="win-card">
+            <div class="win-emoji" aria-hidden="true">🎉</div>
+            <h2 id="win-title">¡Lo lograste!</h2>
+            <div class="win-stars" id="win-stars" aria-live="polite"></div>
+            <p id="win-text">¡Muy bien hecho!</p>
+            <div class="win-actions">
+                <button class="btn-primary" id="win-again" type="button">Jugar otra vez</button>
+                <a class="btn-soft" href="educa.html#juegos">Más juegos</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="comun.js"></script>
+    <script src="comida.js"></script>
+</body>
+</html>

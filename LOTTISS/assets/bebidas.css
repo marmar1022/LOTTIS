@@ -1,0 +1,163 @@
+/* ============================================================
+   EducaJuega · bebidas.css  (Nivel 1 · Conecta y elige)
+   ============================================================ */
+
+.drink-board {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(40px, 8vw, 110px);
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+.drink-hero {
+    position: relative;
+    display: grid;
+    min-height: 330px;
+    place-items: center;
+    
+    
+
+}
+
+.drink-board,
+.drink-hero,
+.drink-choices {
+    position: relative;
+    z-index: 0;
+}
+
+.drink-board::before {
+    position: absolute;
+    z-index: -1;
+    inset: -20px;
+    border-radius: 28px;
+    background: url("img/cocina.jpg") center / cover no-repeat;
+    content: "";
+}
+
+.drink-hero img {
+    height: 290px;
+    max-width: 90%;
+    object-fit: contain;
+    animation: bob 3.2s ease-in-out infinite;
+}
+
+/* punto azul desde donde se arrastra la línea */
+.handle {
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    z-index: 3;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 4px 0 var(--blue-dark);
+    color: #fff;
+    cursor: grab;
+    font-size: 22px;
+    font-weight: 700;
+    touch-action: none;
+    transform: translateY(-50%);
+}
+
+.handle:active { cursor: grabbing; }
+
+.drink-line {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.drink-line line {
+    stroke: var(--blue);
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.drink-choices { display: grid; gap: 16px; }
+
+.choice-card {
+    position: relative;
+    display: flex;
+    min-height: 88px;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 18px;
+    border: 3px solid #dcecf7;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 5px 0 #e5f0f7;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.choice-card:hover { transform: translateY(-2px); border-color: #a9d9f4; }
+.choice-card.hover-drop { border-color: var(--blue); background: #f1faff; transform: scale(1.03); }
+.choice-card.correct { border-color: #58c77b; background: var(--green-bg); animation: pop .4s; }
+.choice-card.incorrect { border-color: #f29ba3; background: #fff2f3; animation: shake .35s; }
+
+.choice-card .dot {
+    position: absolute;
+    left: -14px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #8fb8d4;
+    transform: translateY(-50%);
+}
+
+.choice-emoji {
+    display: grid;
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px;
+    place-items: center;
+    border-radius: 17px;
+    background: #fff0e8;
+    font-size: 34px;
+}
+
+.choice-card:nth-child(2) .choice-emoji { background: #e0f7ff; }
+.choice-card:nth-child(3) .choice-emoji { background: #fff7c9; }
+.choice-card > span:last-child { display: grid; gap: 5px; }
+.choice-card small { color: #7189a2; font-size: 11px; font-weight: 700; letter-spacing: .07em; }
+.choice-card strong { font-size: 20px; }
+
+@media (max-height: 700px) {
+    .drink-board { gap: 10px; }
+    .drink-hero { min-height: 190px; }
+    .drink-hero img { height: 170px; }
+    .drink-choices { gap: 8px; }
+    .choice-card { min-height: 58px; gap: 8px; padding: 6px 10px; }
+    .choice-emoji { width: 38px; height: 38px; flex-basis: 38px; font-size: 24px; }
+}
+
+@media (max-width: 560px) {
+    .drink-board { grid-template-columns: 1fr; gap: 12px; }
+    .handle, .drink-line { display: none; }
+    .drink-hero { height: clamp(180px, 23vh, 200px); min-height: clamp(180px, 23vh, 200px); }
+    .drink-hero img { height: clamp(160px, 21vh, 180px); }
+    .choice-card .dot { display: none; }
+    .choice-card { min-height: clamp(64px, 8vh, 72px); }
+    .choice-emoji { width: 46px; height: 46px; flex-basis: 46px; font-size: 28px; }
+}
+
+@media (max-width: 560px) and (max-height: 700px) {
+    .drink-board { gap: 12px; }
+    .drink-hero { min-height: 190px; }
+    .drink-hero img { height: 170px; }
+}
